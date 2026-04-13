@@ -6,7 +6,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { itemReducer } from './store/item/reducers/item.reducer';
 import { ItemEffects } from './store/item/effects/item.effects';
-
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
@@ -16,5 +16,8 @@ export const appConfig: ApplicationConfig = {
     provideEffects([ItemEffects]),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
+    provideStoreDevtools({
+      logOnly: false, /// for dev only
+    }),
   ],
 };
