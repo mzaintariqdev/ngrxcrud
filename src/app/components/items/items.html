@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>Small Demonstration of Ngrx Crud with Angular</h1>
+  <div class="form">
+    <input
+      type="text"
+      [ngModel]="newTitle()"
+      (ngModelChange)="newTitle.set($event)"
+      placeholder="Enter item..."
+    />
+    @if (editingId() === null) {
+      <button (click)="add()">Add</button>
+    } @else {
+      <button (click)="update()">Update</button>
+
+      <button (click)="cancelEdit()">Cancel</button>
+    }
+  </div>
+
+  <!-- SCROLLABLE LIST -->
+  <div class="list-wrapper">
+    <ul>
+      <li *ngFor="let item of items$ | async">
+        <span class="title">{{ item.title }}</span>
+
+        <div class="actions">
+          <button class="edit" (click)="edit(item)">Edit</button>
+          <button class="delete" (click)="delete(item.id)">Delete</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
